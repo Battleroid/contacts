@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <h3>Contacts</h3>
+    {% for person in entry.items %}
+        <table>
+            <tr>
+                <td>Name (Last, First)</td>
+                <td>{{ person.lname }}, {{ person.fname }}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{ person.email }}</td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>{{ person.phone }}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{ person.addr }}</td>
+            </tr>
+        </table>
+    {% endfor %}
+    <nav>
+        {% if entry.has_prev %}
+            <a href="{{ url_for('index', page=entry.prev_num) }}">Previous</a>
+        {% endif %}
+        {% if entry.has_next %}
+            <a href="{{ url_for('index', page=entry.next_num) }}">Next</a>
+        {% endif %}
+        |
+        {% if entry.page != 1 %}
+            <a href="{{ url_for('index') }}">First</a>
+        {% endif %}
+        {% if entry.page != entry.pages %}
+            <a href="{{ url_for('index', page=entry.pages) }}">Last</a>
+        {% endif %}
+    </nav>
+    <div class="search">
+        <form action="{{ url_for('index') }}" method="post">
+            <input type="submit" value="Search"/>
+            <input type="text" name="search"/>
+        </form>
+    </div>
+{% endblock %}
