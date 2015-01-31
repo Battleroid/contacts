@@ -32,3 +32,19 @@ table tr > td:first-child {
 .search {
     text-align: center;
 }
+
+h3 span {
+    float: right;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    text-align: center;
+    padding: 1em;
+    background: #F5EA6F;
+}

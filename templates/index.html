@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block main %}
-    <h3>Contacts ({{ entry.page }}/{{ entry.pages }})</h3>
+    <h3>Contacts <span>({{ entry.page }}/{{ entry.pages }})</span></h3>
     {% for person in entry.items %}
         <table>
             <tr>
