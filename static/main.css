@@ -29,10 +29,6 @@ table tr > td:first-child {
     font-weight: bold;
 }
 
-.search {
-    text-align: center;
-}
-
 h3 span {
     float: right;
 }
