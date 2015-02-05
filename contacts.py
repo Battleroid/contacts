@@ -29,7 +29,7 @@ def nope(e):
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/page/<int:page>', methods=['GET'])
 def index(page=1):
-    contact = Contact.query.with_entities(Contact.lname, Contact.fname, Contact.phone, Contact.addr, Contact.email).paginate(page, app.config['PAGE_MAX'], True)
+    contact = Contact.query.with_entities(Contact.lname, Contact.fname, Contact.phone, Contact.addr, Contact.email).order_by(Contact.lname).paginate(page, app.config['PAGE_MAX'], True)
     return render_template('index.html', entry=contact)
 
 if __name__ == '__main__':
