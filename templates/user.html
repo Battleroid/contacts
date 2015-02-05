@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block main %}
+    <h3>{{ entry.lname }}, {{ entry.fname }}</h3>
+    <table class="single">
+        <tr>
+            <td>Email</td>
+            <td>{{ entry.email }}</td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>{{ entry.phone }}</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>{{ entry.addr }}</td>
+        </tr>
+    </table>
+    <nav>
+        <a href="{{ url_for('index') }}">Index</a>
+        |
+        <a href="{{ url_for('directory') }}">Directory</a>
+    </nav>
+{% endblock %}

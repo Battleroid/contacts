@@ -1,4 +1,5 @@
 from faker import Faker
+import sys
 from contacts import Contact, db
 
 fake = Faker()
@@ -9,4 +10,10 @@ def populate(total=10):
     db.session.commit()
 
 if __name__ == '__main__':
-    populate()
+    if sys.argv[1]:
+        try:
+            populate(int(sys.argv[1]))
+        except Exception:
+            print sys.argv[1], 'is not an integer'
+    else:
+        populate()

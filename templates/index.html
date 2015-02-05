@@ -1,40 +1,47 @@
 {% extends "layout.html" %}
 
 {% block main %}
-    <h3>Contacts <span>({{ entry.page }}/{{ entry.pages }})</span></h3>
-    {% for person in entry.items %}
-        <table>
-            <tr>
-                <td>Name (Last, First)</td>
-                <td>{{ person.lname }}, {{ person.fname }}</td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td>{{ person.email }}</td>
-            </tr>
-            <tr>
-                <td>Phone</td>
-                <td>{{ person.phone }}</td>
-            </tr>
-            <tr>
-                <td>Address</td>
-                <td>{{ person.addr }}</td>
-            </tr>
-        </table>
-    {% endfor %}
-    <nav>
-        {% if entry.has_prev %}
-            <a href="{{ url_for('index', page=entry.prev_num) }}">Previous</a>
-        {% endif %}
-        {% if entry.has_next %}
-            <a href="{{ url_for('index', page=entry.next_num) }}">Next</a>
-        {% endif %}
-        |
-        {% if entry.page != 1 %}
-            <a href="{{ url_for('index') }}">First</a>
-        {% endif %}
-        {% if entry.page != entry.pages %}
-            <a href="{{ url_for('index', page=entry.pages) }}">Last</a>
-        {% endif %}
-    </nav>
+    {% if entry.items %}
+        <h3>Contacts <span>({{ entry.page }}/{{ entry.pages }})</span></h3>
+        {% for person in entry.items %}
+            <table class="single">
+                <tr>
+                    <td>Name (Last, First)</td>
+                    <td>{{ person.lname }}, {{ person.fname }}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{ person.email }}</td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>{{ person.phone }}</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>{{ person.addr }}</td>
+                </tr>
+            </table>
+        {% endfor %}
+        <nav>
+            {% if entry.has_prev %}
+                <a href="{{ url_for('index', page=entry.prev_num) }}">Previous</a>
+            {% endif %}
+            {% if entry.has_next %}
+                <a href="{{ url_for('index', page=entry.next_num) }}">Next</a>
+            {% endif %}
+            |
+            {% if entry.page != 1 %}
+                <a href="{{ url_for('index') }}">First</a>
+            {% endif %}
+            {% if entry.page != entry.pages %}
+                <a href="{{ url_for('index', page=entry.pages) }}">Last</a>
+            {% endif %}
+            |
+            <a href="{{ url_for('directory') }}">Directory</a>
+        </nav>
+    {% else %}
+        <h3>Contacts</h3>
+        <p class="center">Nothing to see here (database empty).</p>
+    {% endif %}
 {% endblock %}

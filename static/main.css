@@ -17,15 +17,19 @@ table {
     margin: 20px auto;
 }
 
-td {
+td, th {
     padding: 3px 15px;
+}
+
+th {
+    text-align: left;
 }
 
 table tr:nth-child(odd) {
     background: #eee;
 }
 
-table tr > td:first-child {
+table.single tr > td:first-child {
     font-weight: bold;
 }
 

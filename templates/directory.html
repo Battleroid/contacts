@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block main %}
+    {% if entry.items %}
+        <h3>Directory <span>{{ ((entry.page - 1) * config.PAGE_DIRECTORY) }}-{{ entry.items|length + ((entry.page - 1) * config.PAGE_DIRECTORY) }} ({{ entry.total }} total)</span></h3>
+        <table>
+            <tr>
+                <th>Name (Last, First)</th>
+                <th>ID</th>
+            </tr>
+            {% for person in entry.items %}
+                <tr>
+                    <td>{{ person.lname }}, {{ person.fname }}</td>
+                    <td><a href="{{ url_for('user', userid=person.id) }}">>>{{ person.id }}</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <nav>
+            {% for page in entry.iter_pages() %}
+                {% if page %}
+                    {% if page != entry.page %}
+                        <a href="{{ url_for('directory', page=page) }}">{{ page }}</a>
+                    {% else %}
+                        <strong>{{ entry.page }}</strong>
+                    {% endif %}
+                {% else %}
+                    <span>...</span>
+                {% endif %}
+            {% endfor %}
+            |
+            <a href="{{ url_for('index') }}">Index</a>
+        </nav>
+    {% else %}
+        <h3>Directory</h3>
+        <p class="center">No one likes you (database empty).</p>
+    {% endif %}
+{% endblock %}
