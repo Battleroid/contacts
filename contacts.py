@@ -46,4 +46,4 @@ def index(page=1):
     return render_template('index.html', entry=contact)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run()
